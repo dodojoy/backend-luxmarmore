@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  name      String
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime? // interrogação para informar que não é obrigatório
+
+  @@map("users")
+}
+
+model About {
+  id                Int    @id @default(autoincrement())
+  mobileBanner      String
+  desktopBanner     String
+  alternativeBanner String
+  title             String
+  description       String @db.Text
+
+  @@map("about")
+}
+
+model Portfolio {
+  id     Int     @id @default(autoincrement())
+  title  String
+  medias Media[]
+
+  @@map("portfolios")
+}
+
+model Media {
+  id             Int       @id @default(autoincrement())
+  img            String
+  imgDescription String
+  portfolioId    Int
+  portfolio      Portfolio @relation(fields: [portfolioId], references: [id])
+
+  @@map("medias")
+}
+
+model Contact {
+  id   Int    @id @default(autoincrement())
+  type String
+  data String
+
+  @@map("contacts")
+}
+
+model Budget {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String @db.Text
+
+  @@map("budgets")
+}
+
+model Product {
+  id         Int    @id @default(autoincrement())
+  name       String
+  percentage Float
+
+  @@map("products")
+}
+
+model Color {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Float
+
+  @@map("colors")
+}
