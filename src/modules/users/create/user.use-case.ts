@@ -1,7 +1,8 @@
-import { User } from "@prisma/client"
-import { AppError } from "../../../../errors/AppError";
+import { User } from "@prisma/client";
 import { prisma } from "../../../../prisma/client";
-import { CreateUserDTO } from "../../dtos/CreateUserDTO";
+import { AppError } from "../../../errors/AppError";
+import { CreateUserDTO } from "../dtos/user.dto";
+
 
 export class CreateUserUseCase {
     async execute({ name, email, password}: CreateUserDTO): Promise<User> {

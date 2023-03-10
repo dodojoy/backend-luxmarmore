@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateAboutController } from "../modules/aboutTableUseCases/createAbout/CreateAboutController";
+import { CreateAboutController } from "../modules/about/create/about.controller";
 
 const createAboutController = new CreateAboutController;
 
